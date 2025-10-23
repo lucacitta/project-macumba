@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 
 using UnityEngine.UI;
 using UnityEngine;
@@ -7,19 +8,37 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    // Component references
+    private Rigidbody rb;
+    public GameObject EquippedWeapon;
+    private GameObject enemyManager;
+
+
+
+    // Health stats
     public int maxHealth = 3;
     public int health = 3;
 
+
+    // Movement stats
     public float baseSpeed = 8f;
     public float actualSpeed = 8f;
     public bool canMove = true;
-
     public float jumpForce = 5f;
     private bool isGrounded = true;
-    private Rigidbody rb;
-
     private float _origDrag;
 
+
+    // Attack stats
+    private float aimRange = 50f;
+    private float aimMaxAngle = 90f;
+    private float aimSmoothSpeed = 10f;
+    private float orbitSpeed = 50f;
+
+
+
+
+    // Basic Unity functions
     void Awake()
     {
         _origDrag = GetComponent<Rigidbody>().drag;
@@ -28,7 +47,29 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        EquippedWeapon = transform.Find("EquippedWeapon").GetChild(0).gameObject;
+        enemyManager = GameObject.Find("EnemyManager");
     }
+
+    void FixedUpdate()
+    {
+        handle_movement();
+        handle_jump();
+
+        Aim();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.contacts[0].normal.y > 0.5)
+        {
+            isGrounded = true;
+        }
+
+    }
+
+
+    // Movement functions
 
     void handle_movement()
     {
@@ -56,21 +97,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        handle_movement();
-        handle_jump();
-    }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.contacts[0].normal.y > 0.5)
-        {
-            isGrounded = true;
-        }
-
-    }
-
+    // Damage functions
     public void GetDamage(int damage)
     {
         health -= damage;
@@ -98,5 +126,72 @@ public class Player : MonoBehaviour
         rb.drag = 0.6f;
         canMove = false;
         Invoke("EnableMovement", 0.3f);
+    }
+
+
+    // Attack functions
+    public void Attack()
+    {
+        Debug.Log("Player attacks!");
+    }
+
+    void Aim()
+    {
+        
+        EquippedWeapon.transform.RotateAround(transform.position, Vector3.up, orbitSpeed * Time.deltaTime);
+
+        Vector3 orbitDirection = (EquippedWeapon.transform.position - transform.position);
+        orbitDirection.y = 0f; 
+        if (orbitDirection.sqrMagnitude < 0.0001f) return;
+        orbitDirection.Normalize(); 
+
+        GameObject closestEnemy = null;
+        float closestDist = Mathf.Infinity;
+
+        List<GameObject> enemies = EnemyManager.ActiveEnemies;
+
+        foreach (var enemy in enemies)
+        {
+            Vector3 toEnemyFromPlayer = enemy.transform.position - transform.position;
+            float distPlayer = toEnemyFromPlayer.magnitude;
+
+            if (distPlayer <= aimRange && distPlayer < closestDist)
+            {
+                closestDist = distPlayer;
+                closestEnemy = enemy;
+            }
+        }
+
+        Vector3 targetDirection = orbitDirection;
+
+        if (closestEnemy != null)
+        {
+            Vector3 directionToClosestEnemy = (closestEnemy.transform.position - transform.position);
+            directionToClosestEnemy.y = 0f;
+            if (directionToClosestEnemy.sqrMagnitude < 0.0001f)
+            {
+                targetDirection = orbitDirection; 
+            }
+            else
+            {
+                directionToClosestEnemy.Normalize();
+
+                float angleToEnemy = Vector3.SignedAngle(orbitDirection, directionToClosestEnemy, Vector3.up);
+
+                float clampedAngle = Mathf.Clamp(angleToEnemy, -aimMaxAngle, aimMaxAngle);
+
+                targetDirection = Quaternion.AngleAxis(clampedAngle, Vector3.up) * orbitDirection;
+            }
+        }
+
+        if (targetDirection.sqrMagnitude > 0.0001f)
+        {
+            Quaternion desiredRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+            EquippedWeapon.transform.rotation = Quaternion.Slerp(
+                EquippedWeapon.transform.rotation,
+                desiredRotation,
+                Time.deltaTime * aimSmoothSpeed
+            );
+        }
     }
 }

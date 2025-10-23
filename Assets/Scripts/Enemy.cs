@@ -6,6 +6,13 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
 
+    // Component references
+    private Rigidbody rb;
+    private NavMeshAgent agent;
+    private Transform playerTransform;
+    private EnemyManager enemyManager;
+
+
     // Enemy stats
     public bool canMove = true;
     public int collisionDamage = 1;
@@ -19,9 +26,6 @@ public class Enemy : MonoBehaviour
     public float acceleration;
 
 
-    private Rigidbody rb;
-    private NavMeshAgent agent;
-    private Transform playerTransform;
 
     void Start()
     {
@@ -32,6 +36,8 @@ public class Enemy : MonoBehaviour
         
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
+        enemyManager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
+        EnemyManager.RegisterEnemy(this.gameObject);
     }
 
     private void OnCollisionEnter(Collision other)
