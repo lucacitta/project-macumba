@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
 
     // Enemy stats
     public bool canMove = true;
-    public int collisionDamage = 1;
+    public float collisionDamage = 1f;
     public float detectionRange = 10f; //to implement later
     public float knockbackForceToPlayer = 5f;
     public float knockbackForceToSelf = 3f;

@@ -10,14 +10,13 @@ public class Player : MonoBehaviour
 {
     // Component references
     private Rigidbody rb;
-    public GameObject EquippedWeapon;
+    public List<GameObject> EquippedWeapons;
     private GameObject enemyManager;
 
 
-
     // Health stats
-    public int maxHealth = 3;
-    public int health = 3;
+    public float maxHealth = 100f;
+    public float health = 100f;
 
 
     // Movement stats
@@ -30,11 +29,9 @@ public class Player : MonoBehaviour
 
 
     // Attack stats
-    private float aimRange = 50f;
-    private float aimMaxAngle = 90f;
-    private float aimSmoothSpeed = 10f;
-    private float orbitSpeed = 50f;
-
+    private readonly float aimMaxAngle = 90f;
+    private readonly float aimSmoothSpeed = 10f;
+    private readonly float orbitSpeed = 50f;
 
 
 
@@ -47,14 +44,18 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        EquippedWeapon = transform.Find("EquippedWeapon").GetChild(0).gameObject;
+        EquippedWeapons = new List<GameObject>();
+        for (int i = 0; i < transform.Find("EquippedWeapons").childCount; i++)
+        {
+            EquippedWeapons.Add(transform.Find("EquippedWeapons").GetChild(i).gameObject);
+        }
         enemyManager = GameObject.Find("EnemyManager");
     }
 
     void FixedUpdate()
     {
-        handle_movement();
-        handle_jump();
+        Handle_movement();
+        Handle_jump();
 
         Aim();
     }
@@ -71,7 +72,7 @@ public class Player : MonoBehaviour
 
     // Movement functions
 
-    void handle_movement()
+    void Handle_movement()
     {
         if (!canMove) return;
         float moveHorizontal = Input.GetAxis("Horizontal");
@@ -87,7 +88,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void handle_jump()
+    void Handle_jump()
     {
         float jump = Input.GetAxis("Jump");
         if (jump > 0 && isGrounded)
@@ -99,9 +100,11 @@ public class Player : MonoBehaviour
 
 
     // Damage functions
-    public void GetDamage(int damage)
+    public void GetDamage(float damage)
     {
         health -= damage;
+
+        Debug.Log("Player took " + damage + " damage. Current health: " + health);
 
         if (health <= 0)
         {
@@ -137,7 +140,14 @@ public class Player : MonoBehaviour
 
     void Aim()
     {
-        
+        foreach (var EquippedWeapon in EquippedWeapons)
+        {
+            AimWeapon(EquippedWeapon);
+        }
+    }
+
+    void AimWeapon(GameObject EquippedWeapon)
+    {
         EquippedWeapon.transform.RotateAround(transform.position, Vector3.up, orbitSpeed * Time.deltaTime);
 
         Vector3 orbitDirection = (EquippedWeapon.transform.position - transform.position);
@@ -155,7 +165,7 @@ public class Player : MonoBehaviour
             Vector3 toEnemyFromPlayer = enemy.transform.position - transform.position;
             float distPlayer = toEnemyFromPlayer.magnitude;
 
-            if (distPlayer <= aimRange && distPlayer < closestDist)
+            if (distPlayer <= EquippedWeapon.GetComponent<Guns>().range && distPlayer < closestDist)
             {
                 closestDist = distPlayer;
                 closestEnemy = enemy;

@@ -155,16 +155,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5ed6f4e15aceb642a32d1c959482a39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EquippedWeapon: {fileID: 0}
+  EquippedWeapons: []
   maxHealth: 3
   health: 3
   baseSpeed: 25
   actualSpeed: 25
   canMove: 1
   jumpForce: 30
-  aimRange: 50
-  aimMaxAngle: 45
-  aimSmoothSpeed: 10
 --- !u!136 &63887553
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -397,7 +394,7 @@ GameObject:
   m_Component:
   - component: {fileID: 214459007}
   m_Layer: 0
-  m_Name: EquippedWeapon
+  m_Name: EquippedWeapons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -887,6 +884,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1829026070}
     m_Modifications:
+    - target: {fileID: 2241623303267930092, guid: 8187fe80fff424d4d9b2fa1182cf6b88, type: 3}
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4748438723986472058, guid: 8187fe80fff424d4d9b2fa1182cf6b88, type: 3}
       propertyPath: m_LocalPosition.x
       value: -28.2
@@ -940,6 +941,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4748438723986472058, guid: 8187fe80fff424d4d9b2fa1182cf6b88, type: 3}
   m_PrefabInstance: {fileID: 1572701634}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1750103769 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ca4060f7b8c354c47b6a4631ffd62eb3, type: 3}
+  m_PrefabInstance: {fileID: 1987868328}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1829026069
 GameObject:
@@ -1077,13 +1083,33 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ca4060f7b8c354c47b6a4631ffd62eb3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1987868330}
   m_SourcePrefab: {fileID: 100100000, guid: ca4060f7b8c354c47b6a4631ffd62eb3, type: 3}
 --- !u!4 &1987868329 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ca4060f7b8c354c47b6a4631ffd62eb3, type: 3}
   m_PrefabInstance: {fileID: 1987868328}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1987868330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750103769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5e1ed4df26925499403b8f906bd8b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 7604679898120941179, guid: b9cbe6f4ce969e040abe8ffac628b6af, type: 3}
+  damage: 10
+  range: 100
+  fireRate: 60
+  bulletSpeed: 40
 --- !u!1 &2031999150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,6 +1181,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1829026070}
     m_Modifications:
+    - target: {fileID: 2241623303267930092, guid: 8187fe80fff424d4d9b2fa1182cf6b88, type: 3}
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4748438723986472058, guid: 8187fe80fff424d4d9b2fa1182cf6b88, type: 3}
       propertyPath: m_LocalPosition.x
       value: 48.9
