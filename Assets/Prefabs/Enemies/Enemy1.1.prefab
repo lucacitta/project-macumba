@@ -101,9 +101,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  knockbackForceToOther: 5
-  knockbackForceToSelf: 3
-  knockbackDuration: 0.3
+  knockbackForceToOther: 15
+  knockbackForceToSelf: 10
+  knockbackDurationToSelf: 0.6
+  knockbackDurationToOther: 0.3
+  destroyAfterContact: 0
 --- !u!33 &4317198953368805402
 MeshFilter:
   m_ObjectHideFlags: 0

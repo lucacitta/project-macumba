@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291541eab9e1d2642895ec87edd65fd1, type: 3}
+  m_Name: MagnumGunDefinition
+  m_EditorClassIdentifier: 
+  gunId: Magnum
+  range: 60
+  damage: 10
+  fireRate: 2
+  projectileSpeed: 24
+  projectilePrefab: {fileID: 7604679898120941179, guid: b9cbe6f4ce969e040abe8ffac628b6af, type: 3}
+  spreadDegrees: 0
+  fireAngleThreshold: 8
