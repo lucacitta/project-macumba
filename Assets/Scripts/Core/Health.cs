@@ -6,12 +6,16 @@ public class Health : MonoBehaviour, IDamageable
     [SerializeField] public float maxHealth = 100f;
     [SerializeField] public float currentHealth = 100f;
 
+    public bool IsDead => currentHealth <= 0f;
+
     public UnityEvent<float> OnDamaged;
-    public UnityEvent OnDied;
+
+    private IDie dieInterface;
 
     private void Awake()
     {
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        dieInterface = GetComponent<IDie>();
     }
 
     public void ApplyDamage(float amount)
@@ -21,8 +25,7 @@ public class Health : MonoBehaviour, IDamageable
         if (currentHealth <= 0f)
         {
             currentHealth = 0f;
-            OnDied?.Invoke();
-            // TODO: disable actor / play death animation / notify manager
+            dieInterface?.OnDied();
         }
     }
 }

@@ -19,6 +19,7 @@ public class DamageOnContact : MonoBehaviour
 
         // Deal damage
         otherDmg?.ApplyDamage(damage);
+        if (otherDmg?.IsDead == true) return;
 
         // Knockback directions from contact normal
         Vector3 toOther = -other.GetContact(0).normal;
