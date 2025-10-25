@@ -28,9 +28,11 @@ public class Guns : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation(transform.forward) * Quaternion.Euler(0, 90, 90);
             GameObject bullet = Instantiate(bulletPrefab, transform.position + transform.forward * 1f, rotation);
             var bulletScript = bullet.GetComponent<Bullet>();
+            var damageOnContact = bullet.GetComponent<DamageOnContact>();
             bulletScript.ShootingGun = this; 
+            damageOnContact.damage = damage;
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
-            rb?.AddForce((transform.forward + Vector3.left * 0.1f) * bulletSpeed, ForceMode.Impulse);
+            rb?.AddForce(transform.forward * bulletSpeed, ForceMode.Impulse);
         }
     }
 }

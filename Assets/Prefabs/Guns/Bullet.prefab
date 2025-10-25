@@ -9,10 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5868405663075033338}
+  - component: {fileID: 7731413923970956773}
+  - component: {fileID: 6643497128595220064}
+  - component: {fileID: 7454677261943955233}
   - component: {fileID: 7084207424813657497}
   - component: {fileID: 2885285358858493940}
   - component: {fileID: 6457767687394294000}
-  - component: {fileID: -2385396963165862861}
   - component: {fileID: 3228963291754554351}
   m_Layer: 0
   m_Name: Bullet
@@ -36,6 +38,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7731413923970956773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7604679898120941179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df1531faa35afbe4db37b937622bb385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  knockbackForceToOther: 5
+  knockbackForceToSelf: 3
+  knockbackDurationToSelf: 0.3
+  knockbackDurationToOther: 0.3
+  destroyAfterContact: 1
+--- !u!114 &6643497128595220064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7604679898120941179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6edbf167ace3444bbc1843be3087b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShootingGun: {fileID: 0}
+--- !u!114 &7454677261943955233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7604679898120941179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 223a114145c838d43bf0526879c0e450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 10
 --- !u!33 &7084207424813657497
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -109,18 +155,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-2385396963165862861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7604679898120941179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56e4eeb8a332d6c4e872b63861508adb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &3228963291754554351
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -146,5 +180,5 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
+  m_Constraints: 116
   m_CollisionDetection: 0

@@ -9,12 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4748438723986472058}
+  - component: {fileID: -3259077838722504554}
+  - component: {fileID: -9190094787770667271}
+  - component: {fileID: 8249565783336121952}
+  - component: {fileID: -7003414136436570359}
   - component: {fileID: 4317198953368805402}
   - component: {fileID: 8613151840383726225}
   - component: {fileID: 1667024612114163779}
   - component: {fileID: 6603875291298712073}
   - component: {fileID: 3080554230984212779}
-  - component: {fileID: 2241623303267930092}
   m_Layer: 0
   m_Name: Enemy1.1
   m_TagString: Enemy
@@ -37,6 +40,70 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-3259077838722504554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7558436321381012640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419b27c809e505b49a8e2a67149d7811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 100
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDied:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-9190094787770667271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7558436321381012640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff15db3c37489a64db0411e4d94b69e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 15
+  angularSpeed: 180
+  acceleration: 15
+--- !u!114 &8249565783336121952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7558436321381012640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8367e8a66a6cfe14e9a4a612ec16eacd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  friction: 8
+--- !u!114 &-7003414136436570359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7558436321381012640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df1531faa35afbe4db37b937622bb385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  knockbackForceToOther: 5
+  knockbackForceToSelf: 3
+  knockbackDuration: 0.3
 --- !u!33 &4317198953368805402
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -159,23 +226,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &2241623303267930092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7558436321381012640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2355b28be6c1664ba6b3c9aa17e44e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canMove: 1
-  collisionDamage: 1
-  detectionRange: 10
-  knockbackForceToPlayer: 40
-  knockbackForceToSelf: 30
-  chaseSpeed: 15
-  angularSpeed: 180
-  acceleration: 15
