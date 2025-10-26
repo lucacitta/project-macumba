@@ -15,7 +15,7 @@ MonoBehaviour:
   gunId: Magnum
   range: 60
   damage: 40
-  fireRate: 3
+  fireRate: 4
   projectileSpeed: 24
   projectilePrefab: {fileID: 7604679898120941179, guid: b9cbe6f4ce969e040abe8ffac628b6af, type: 3}
   spreadDegrees: 0

@@ -22,12 +22,10 @@ public class KnockbackReceiverAgent : MonoBehaviour, IKnockbackable
         {
             stunTimer -= Time.deltaTime;
 
-            // manual displacement while agent is paused
             var pos = transform.position;
             pos += knockbackVelocity * Time.deltaTime;
             transform.position = pos;
 
-            // simple damping
             knockbackVelocity = Vector3.MoveTowards(knockbackVelocity, Vector3.zero, friction * Time.deltaTime);
 
             if (stunTimer <= 0f) agent.isStopped = false;

@@ -9,17 +9,12 @@ public class DamageOnContact : MonoBehaviour
     public float knockbackDurationToOther = 0.3f;
     public bool destroyOnHit  = true;
     public bool useTrigger = false;
-    private bool processedThisFrame = false;
 
     public void HandleHit(GameObject other, Vector3 contactNormal)
     {
-        if (processedThisFrame) return; // guard same-frame
-        processedThisFrame = true;
-
         var otherDmg = other.gameObject.GetComponent<IDamageable>();
         var kbOther = other.gameObject.GetComponent<IKnockbackable>();
         var kbSelf = GetComponent<IKnockbackable>();
-
         if (otherDmg == null && kbOther == null) return;
 
         // Deal damage
@@ -43,8 +38,7 @@ public class DamageOnContact : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // allow new frame hits if projectile is piercing (destroyOnHit=false)
-        // processedThisFrame = false; //FEATURE: implement piercing projectiles as upgrade
+        // (destroyOnHit=false) //FEATURE: implement piercing projectiles as upgrade
     }
 
     private void OnTriggerEnter(Collider other)

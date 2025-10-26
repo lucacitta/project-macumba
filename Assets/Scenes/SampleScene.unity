@@ -360,34 +360,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1829026070}
     m_Modifications:
-    - target: {fileID: -9190094787770667271, guid: 8187fe80fff424d4d9b2fa1182cf6b88, type: 3}
-      propertyPath: speed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: -7003414136436570359, guid: 8187fe80fff424d4d9b2fa1182cf6b88, type: 3}
-      propertyPath: destroyOnHit
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7003414136436570359, guid: 8187fe80fff424d4d9b2fa1182cf6b88, type: 3}
-      propertyPath: knockbackDuration
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -7003414136436570359, guid: 8187fe80fff424d4d9b2fa1182cf6b88, type: 3}
-      propertyPath: destroyAfterContact
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7003414136436570359, guid: 8187fe80fff424d4d9b2fa1182cf6b88, type: 3}
-      propertyPath: knockbackForceToSelf
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: -7003414136436570359, guid: 8187fe80fff424d4d9b2fa1182cf6b88, type: 3}
-      propertyPath: knockbackForceToOther
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: -7003414136436570359, guid: 8187fe80fff424d4d9b2fa1182cf6b88, type: 3}
-      propertyPath: knockbackDurationToSelf
-      value: 0.6
-      objectReference: {fileID: 0}
     - target: {fileID: 4748438723986472058, guid: 8187fe80fff424d4d9b2fa1182cf6b88, type: 3}
       propertyPath: m_LocalPosition.x
       value: -30

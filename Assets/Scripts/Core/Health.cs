@@ -21,7 +21,7 @@ public class Health : MonoBehaviour, IDamageable
     public void ApplyDamage(float amount)
     {
         currentHealth -= amount;
-        OnDamaged?.Invoke(amount);
+        OnDamaged?.Invoke(amount); //TODO: Not being used now
         if (currentHealth <= 0f)
         {
             currentHealth = 0f;
