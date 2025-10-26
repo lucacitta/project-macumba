@@ -7,13 +7,18 @@ public class DamageOnContact : MonoBehaviour
     public float knockbackForceToSelf = 3f;
     public float knockbackDurationToSelf = 0.3f;
     public float knockbackDurationToOther = 0.3f;
-    public bool destroyAfterContact = true;
+    public bool destroyOnHit  = true;
+    public bool useTrigger = false;
+    private bool processedThisFrame = false;
 
-    private void OnCollisionEnter(Collision other)
+    public void HandleHit(GameObject other, Vector3 contactNormal)
     {
+        if (processedThisFrame) return; // guard same-frame
+        processedThisFrame = true;
+
         var otherDmg = other.gameObject.GetComponent<IDamageable>();
         var kbOther = other.gameObject.GetComponent<IKnockbackable>();
-        var kbSelf  = GetComponent<IKnockbackable>();
+        var kbSelf = GetComponent<IKnockbackable>();
 
         if (otherDmg == null && kbOther == null) return;
 
@@ -22,11 +27,36 @@ public class DamageOnContact : MonoBehaviour
         if (otherDmg?.IsDead == true) return;
 
         // Knockback directions from contact normal
-        Vector3 toOther = -other.GetContact(0).normal;
-        Vector3 toSelf  =  other.GetContact(0).normal;
+        Vector3 toOther = -contactNormal;
+        Vector3 toSelf = contactNormal;
 
         kbOther?.ApplyKnockback(toOther, knockbackForceToOther, knockbackDurationToOther);
         kbSelf?.ApplyKnockback(toSelf, knockbackForceToSelf, knockbackDurationToSelf);
-        if (destroyAfterContact) Destroy(gameObject);
+
+        if (destroyOnHit)
+        {
+            var col = GetComponent<Collider>();
+            if (col != null)
+            {
+                col.enabled = false; // prevent further collisions while destroying
+            }
+            Destroy(gameObject);
+        }
+
+        // allow new frame hits if projectile is piercing (destroyOnHit=false)
+        // processedThisFrame = false; //FEATURE: implement piercing projectiles as upgrade
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!useTrigger) return;
+        Vector3 guess = (transform.position - other.ClosestPoint(transform.position)).normalized;
+        if (guess == Vector3.zero) guess = -transform.forward;
+        HandleHit(other.gameObject, guess);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        HandleHit(other.gameObject, other.GetContact(0).normal);
     }
 }

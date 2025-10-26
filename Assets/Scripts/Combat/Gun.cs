@@ -54,7 +54,6 @@ public class Gun : MonoBehaviour
         {
             proj.speed = definition.projectileSpeed;
             proj.ShootingGun = this;
-            proj.SetVelocity();
         }
 
         var projDamageOnContact = newProjectile.GetComponent<DamageOnContact>();
