@@ -103,7 +103,8 @@ MonoBehaviour:
   knockbackForceToSelf: 10
   knockbackDurationToSelf: 0.6
   knockbackDurationToOther: 0.3
-  destroyAfterContact: 0
+  destroyOnHit: 0
+  useTrigger: 0
 --- !u!33 &4317198953368805402
 MeshFilter:
   m_ObjectHideFlags: 0
