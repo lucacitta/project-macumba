@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 3080554230984212779}
   - component: {fileID: 5071400054373208178}
   m_Layer: 0
-  m_Name: Enemy1.1
+  m_Name: Enemy1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,6 +73,7 @@ MonoBehaviour:
   speed: 15
   angularSpeed: 180
   acceleration: 15
+  def: {fileID: 11400000, guid: c9877ae5ffb8d7842a35a73136c32763, type: 2}
 --- !u!114 &8249565783336121952
 MonoBehaviour:
   m_ObjectHideFlags: 0

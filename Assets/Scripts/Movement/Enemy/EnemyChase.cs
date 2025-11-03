@@ -9,14 +9,19 @@ public class EnemyChase : MonoBehaviour
     public float angularSpeed = 120f;
     public float acceleration = 8f;
 
+    public EnemyDefinition def;
+    public float DangerFactor => def != null ? def.dangerFactor : 1f; //TODO: Move this to Definition asset file
+
     private NavMeshAgent agent;
     private Transform player;
     private IKnockbackable kb;
+    private EnemyManager enemyManager;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         kb = GetComponent<IKnockbackable>();
+        enemyManager = FindObjectOfType<EnemyManager>();
     }
 
     private void Start()
@@ -26,7 +31,7 @@ public class EnemyChase : MonoBehaviour
         agent.acceleration = acceleration;
 
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
-        EnemyManager.RegisterEnemy(gameObject);
+        enemyManager.RegisterEnemy(gameObject);
     }
 
     private void Update()
