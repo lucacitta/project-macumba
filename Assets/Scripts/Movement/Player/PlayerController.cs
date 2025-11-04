@@ -24,7 +24,10 @@ public class PlayerController : MonoBehaviour
         {
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
-            Vector3 vel = new(h * baseSpeed, rb.velocity.y, v * baseSpeed);
+            Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward);
+            Vector3 right = Camera.main.transform.TransformDirection(Vector3.right);
+            Vector3 vel = (right * h + forward * v).normalized * baseSpeed;
+            vel.y = rb.velocity.y;
             rb.velocity = vel;
 
             float jump = Input.GetAxis("Jump");
