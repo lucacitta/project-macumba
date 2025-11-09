@@ -10,15 +10,15 @@ GameObject:
   m_Component:
   - component: {fileID: 4748438723986472058}
   - component: {fileID: -3259077838722504554}
-  - component: {fileID: -9190094787770667271}
-  - component: {fileID: 8249565783336121952}
   - component: {fileID: -7003414136436570359}
+  - component: {fileID: 5071400054373208178}
+  - component: {fileID: 3294507392456575401}
+  - component: {fileID: 3614818011897920894}
   - component: {fileID: 4317198953368805402}
   - component: {fileID: 8613151840383726225}
   - component: {fileID: 1667024612114163779}
   - component: {fileID: 6603875291298712073}
   - component: {fileID: 3080554230984212779}
-  - component: {fileID: 5071400054373208178}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Enemy
@@ -58,35 +58,6 @@ MonoBehaviour:
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &-9190094787770667271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7558436321381012640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff15db3c37489a64db0411e4d94b69e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 20
-  angularSpeed: 100
-  acceleration: 20
-  def: {fileID: 11400000, guid: a62fe1b69e9217746abe2c3192adedab, type: 2}
---- !u!114 &8249565783336121952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7558436321381012640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8367e8a66a6cfe14e9a4a612ec16eacd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  friction: 8
 --- !u!114 &-7003414136436570359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,6 +77,47 @@ MonoBehaviour:
   knockbackDurationToOther: 0.3
   destroyOnHit: 0
   useTrigger: 0
+--- !u!114 &5071400054373208178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7558436321381012640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1196ee27bd4741489b66c7fc1dab95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3294507392456575401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7558436321381012640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c101db95f47a14bb653d6abf662ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  friction: 8
+--- !u!114 &3614818011897920894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7558436321381012640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aeb14fb31a2ac643a3c5aa4d8993b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 7
+  angularSpeed: 120
+  acceleration: 8
+  def: {fileID: 0}
 --- !u!33 &4317198953368805402
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -228,15 +240,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &5071400054373208178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7558436321381012640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1196ee27bd4741489b66c7fc1dab95b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

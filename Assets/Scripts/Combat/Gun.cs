@@ -5,7 +5,7 @@ public class Gun : MonoBehaviour
     [Header("Definition & Setup")]
     public GunDefinition definition;
     public Transform muzzle;
-    public GameObject owner;
+    public GameObject owner; //I think this not being used now.
 
     private float _cooldown;
 

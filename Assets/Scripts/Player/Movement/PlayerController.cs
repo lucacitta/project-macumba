@@ -4,8 +4,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
-    public float baseSpeed = 8f;
-    public float jumpForce = 5f;
+    public float baseSpeed = 15f;
+    public float jumpForce = 20f;
 
 
     private bool isGrounded = true;

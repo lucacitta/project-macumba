@@ -8,6 +8,7 @@ public class OrbitingWeaponsAim : MonoBehaviour
     public Transform owner;
 
     [Header("Orbit")]
+    public float orbitRadius = 3f;
     public float orbitSpeed = 0f;
     public bool orbitClockwise = false;
 
@@ -21,10 +22,9 @@ public class OrbitingWeaponsAim : MonoBehaviour
     private void Awake()
     {
         if (owner == null) owner = transform;
-        CacheWeapons();
     }
 
-    private void CacheWeapons()
+    public void CacheWeapons()
     {
         _weapons.Clear();
         _guns.Clear();
@@ -44,6 +44,16 @@ public class OrbitingWeaponsAim : MonoBehaviour
 
         //Orbit all weapons around the owner
         float dir = orbitClockwise ? -1f : 1f;
+        float angleStep = 360f / _weapons.Count;
+        List<float> currentAngles = new (_weapons.Count);
+        for (int i = 0; i < _weapons.Count; i++)
+        {
+            var w = _weapons[i];
+            float targetAngle = i * angleStep + (Time.time * orbitSpeed * dir);
+            Vector3 offset = new(Mathf.Cos(targetAngle * Mathf.Deg2Rad), 0f, Mathf.Sin(targetAngle * Mathf.Deg2Rad));
+            w.position = owner.position + offset * orbitRadius;
+            currentAngles.Add(targetAngle);
+        }
         foreach (var w in _weapons)
         {
             w.RotateAround(owner.position, Vector3.up, dir * orbitSpeed * Time.deltaTime);
@@ -59,7 +69,7 @@ public class OrbitingWeaponsAim : MonoBehaviour
             var gun = _guns[i];
 
             // Compute "orbit direction" (from owner to weapon on the XZ plane)
-            Vector3 orbitDir = w.position - owner.position;
+            Vector3 orbitDir = w.position - owner.position; 
             orbitDir.y = 0f;
             if (orbitDir.sqrMagnitude < 0.0001f) continue;
             orbitDir.Normalize();
