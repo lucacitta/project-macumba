@@ -8,5 +8,7 @@ public class GrabOnCollision : MonoBehaviour
         var ObjectToGrab = this.transform.GetChild(1).gameObject;
 
         grabber?.GrabObject(ObjectToGrab);
+        this.gameObject.SetActive(false);
+        Destroy(this.gameObject);
     }
 }

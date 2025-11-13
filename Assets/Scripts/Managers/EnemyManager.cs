@@ -1,5 +1,7 @@
 using UnityEngine;
+
 using UnityEngine.AI;
+
 using System.Collections.Generic;
 
 public class EnemyManager : MonoBehaviour
@@ -83,7 +85,7 @@ public class EnemyManager : MonoBehaviour
         var def = PickEnemyDefinition(remaining);
         if (def == null) return;
 
-        if (!TryGetSpawnPoint(player.position, def, out Vector3 spawnPos)) return;
+        if (!TryGetSpawnPoint(player.position, out Vector3 spawnPos)) return;
 
         SpawnEnemy(def, spawnPos);
     }
@@ -114,7 +116,7 @@ public class EnemyManager : MonoBehaviour
         return candidates[^1];
     }
 
-    private bool TryGetSpawnPoint(Vector3 playerPos, EnemyDefinition def, out Vector3 spawnPos)
+    private bool TryGetSpawnPoint(Vector3 playerPos, out Vector3 spawnPos)
     {
         for (int i = 0; i < 10; i++)
         {

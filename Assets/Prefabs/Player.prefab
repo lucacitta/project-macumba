@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3261828096719120689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5837653074982815189}
+  m_Layer: 0
+  m_Name: EquippedWeapons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5837653074982815189
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3261828096719120689}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1915229046937291583}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3796885728574585002
 GameObject:
   m_ObjectHideFlags: 0
@@ -16,13 +47,14 @@ GameObject:
   - component: {fileID: 6106076010157505331}
   - component: {fileID: 4601122685486286906}
   - component: {fileID: 6483068459293488389}
+  - component: {fileID: 4689924536891979457}
   - component: {fileID: 3669949635900404037}
   - component: {fileID: 3006807016721862982}
   - component: {fileID: 234971210031957176}
   - component: {fileID: 3053331995215337410}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,6 +73,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5739200158662757450}
+  - {fileID: 5837653074982815189}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-5464666465404826005
@@ -72,8 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326c8a1bf194813469726806215a90df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponsRoot: {fileID: 0}
+  weaponsRoot: {fileID: 5837653074982815189}
   owner: {fileID: 1915229046937291583}
+  orbitRadius: 3
   orbitSpeed: 40
   orbitClockwise: 0
   aimMaxAngle: 90
@@ -114,8 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621c8f0c2bfe9eb4c9a28fcc9a3eea4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 8
-  jumpForce: 5
+  baseSpeed: 25
+  jumpForce: 20
 --- !u!114 &4601122685486286906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +180,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e731b0f5e577c4cb6bce0562626178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4689924536891979457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3796885728574585002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f1b618518ede66429a9c1ce1a6f5e97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultWeaponPrefab: {fileID: 5139708091775848213, guid: b6d08c802e5045e4a93b4a4215e727e9, type: 3}
 --- !u!54 &3669949635900404037
 Rigidbody:
   m_ObjectHideFlags: 0

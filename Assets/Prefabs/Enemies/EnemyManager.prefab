@@ -47,7 +47,7 @@ MonoBehaviour:
   enemyCatalog:
   - {fileID: 11400000, guid: c9877ae5ffb8d7842a35a73136c32763, type: 2}
   - {fileID: 11400000, guid: a62fe1b69e9217746abe2c3192adedab, type: 2}
-  desiredDangerLevel: 0
+  desiredDangerLevel: 6
   actualDangerLevel: 0
   spawnCheckInterval: 0.25
   maxSimultaneous: 50
